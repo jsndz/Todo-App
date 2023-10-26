@@ -22,6 +22,16 @@ class Todoservice{
             console.log(error);
         }
     }
+
+    async Get(){
+        try {
+            const response = await this.todoRepository.get();
+            return response;
+        } catch (error) {
+            console.log(error);
+        }
+    }
+
 }
 
 module.exports= Todoservice;

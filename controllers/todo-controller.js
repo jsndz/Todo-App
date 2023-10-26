@@ -4,7 +4,7 @@ const todoService = new Todoservice();
 
     const createTodo = async (req,res) =>{
         try {
-            const response = await todoService.Createreate(req.params.id);
+            const response = await todoService.Createreate(req.body);
             return res.status(201).json({
                 data : response,
                 message:'Successfully created todo',
@@ -24,7 +24,7 @@ const todoService = new Todoservice();
 
     const destroyTodo = async (req,res) =>{
         try {
-            const response = await todoService.Destroy(id);
+            const response = await todoService.Destroy(req.params.id);
             return res.status(201).json({
                 data : response,
                 message:'Successfully destroyed todo',
@@ -41,9 +41,29 @@ const todoService = new Todoservice();
         });
         }
     }
-
+    
+    const getTodo = async (req,res) =>{
+        try {
+            const response = await todoService.Get();
+            return res.status(201).json({
+                data : response,
+                message:'Successfully got todo',
+                sucess: true,
+                err:{}
+            })
+        } catch (error) {
+            res.status(500).json({
+                data : {},
+                message:'coulnt be got',
+                sucess: true,
+                err:{error}
+            
+        });
+        }
+    }
 
 module.exports= {
     createTodo,
-    destroyTodo
+    destroyTodo,
+    getTodo
 };

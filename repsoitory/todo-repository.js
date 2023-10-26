@@ -18,6 +18,15 @@ class TodoRespository{
             console.log(error);
         }
     }
+
+    async get(){
+        try {
+            const get = await Todo.find();
+            return get;
+        } catch (error) {
+            console.log(error);
+        }
+    }
 }
 
 module.exports= TodoRespository;
